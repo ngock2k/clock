@@ -3,8 +3,21 @@ import logo from './logo.svg';
 import './App.css';
 
 const getMinuteAndSecondBySecond = (count) => {
-  const minute = Math.floor(count / 60);
-  const second = count % 60;
+  // let realSecond = count / 100;
+  let minute = Math.floor(count / 60);
+  let second = count % 60;
+  
+  if (minute < 10) {
+    minute = `0${minute}`
+  }
+  if (second < 10) {
+   second = `0${second}` 
+  }
+  // if (realsecond < 10) {
+  //   realsecond = `0${realsecond}` 
+  //  }
+  
+
   return {
     minute,
     second,
@@ -18,6 +31,7 @@ function App() {
     const timer = setInterval(() => {
       setCount(pre => pre + 1);
     }, 1000)
+    
     return () => {
       clearInterval(timer)
     }
@@ -27,8 +41,23 @@ function App() {
 
   return (
     <div style={{
-      backgroundColor:'#47944F',
       display:'flex',
+      flexDirection:'column'
+    }}>
+      <div style={{
+        position:'absolute',
+        zIndex:1
+      }}>
+        <img src='image/background.jpg'
+        style={{
+          width:'100vw',
+          height:'100vh'
+        }} />
+      </div>
+    <div style={{
+      // backgroundImage:`URL('image/background.jpg')`,
+      display:'flex',
+      zIndex:2,
       // paddingLeft:550,
       flexDirection:'column',
       // justifyContent:'center',
@@ -37,7 +66,7 @@ function App() {
       
       <p style={{
         fontSize:120,
-        fontWeight:700,
+        fontWeight:400,
 
       }}>
         {`${minute} : ${second}`}
@@ -48,19 +77,19 @@ function App() {
         alignItems:'center'
       }}>
         <div style={{
-          backgroundColor:'#7FBE85',
+          // backgroundColor:'#7FBE85',
           width:100,
           height:100,
           borderRadius:80,
           borderColor:'black',
           borderStyle:'double',
-          borderWidth:8,
+          borderWidth:5,
           display:'flex',
           alignItems:'center',
           justifyContent:'center',
           fontSize:24,
           marginRight:254,
-          fontWeight:700
+          fontWeight:500
         }}>
           <p>
             Vòng
@@ -76,7 +105,7 @@ function App() {
 
         </div>
         <div style={{
-         backgroundColor:'#90B691e',
+         backgroundColor:'grey',
          width:10,
          height:10,
          borderRadius:70 
@@ -84,19 +113,19 @@ function App() {
 
         </div>
         <div style={{
-          backgroundColor:'#7FBE85',
+          // backgroundColor:'blue',
           width:100,
           height:100,
           borderRadius:80,
           borderColor:'black',
           borderStyle:'double',
-          borderWidth:8,
+          borderWidth:5,
           display:'flex',
           alignItems:'center',
           justifyContent:'center',
           fontSize:24,
           marginLeft:254,
-          fontWeight:700
+          fontWeight:500
         }}>
           <p>
             Bắt đầu
@@ -105,8 +134,10 @@ function App() {
 
       </div>
       <div style={{
-        backgroundColor:'grey',
-        height:1
+        backgroundColor:'black',
+        height:1,
+        width:'100%',
+        marginTop:20
       }}>
 
       </div>
@@ -139,7 +170,7 @@ function App() {
             flexDirection:'column',
             marginRight:95,
             marginLeft:95,
-            fontWeight:'bold',
+            fontWeight:500,
             alignItems:'center'
             // paddingTop:'auto'
           }}>
@@ -157,6 +188,7 @@ function App() {
 
       </div>
     
+    </div>
     </div>
   );
 }
